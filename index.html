@@ -5,128 +5,192 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tomer Assa — Projects</title>
   <meta name="description" content="Selected projects by Tomer Assa — a map-driven travel journal and a multi-agent job-search tool." />
-  <meta name="theme-color" content="#0B0B0C" />
+  <meta name="theme-color" content="#08090A" />
   <meta property="og:title" content="Tomer Assa — Projects" />
   <meta property="og:description" content="A map-driven travel journal and a multi-agent job-search tool." />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Martian+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --ink:#0B0B0C; --ink-2:#141118; --sand:#E9E1D3; --sand-dim:#B7AE9E;
-      --brass:#C99554; --brass-soft:rgba(201,149,84,.16); --line:rgba(233,225,211,.12);
+      --bg:#08090A; --bg-2:#0E0F11;
+      --fg:#E6E8E6; --dim:#8A8F8A; --faint:#565A56;
+      --line:rgba(230,232,230,.09); --line-2:rgba(230,232,230,.045);
+      --acc:#B6F400; --acc-dim:rgba(182,244,0,.14);
+      --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+      --disp:"Martian Mono",var(--mono);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{-webkit-text-size-adjust:100%}
+    ::selection{background:var(--acc);color:#0a0a0a}
     body{
-      background:var(--ink); color:var(--sand);
-      font-family:"Source Serif 4",Georgia,serif; line-height:1.6;
-      -webkit-font-smoothing:antialiased;
+      background:var(--bg); color:var(--fg); font-family:var(--mono);
+      font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+      /* faint engineering grid */
       background-image:
-        radial-gradient(120% 80% at 80% -5%, rgba(201,149,84,.18) 0%, rgba(201,149,84,0) 55%),
-        radial-gradient(120% 90% at 0% 105%, rgba(63,74,92,.28) 0%, rgba(63,74,92,0) 55%);
-      background-attachment:fixed;
+        linear-gradient(var(--line-2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
+      background-size:48px 48px; background-position:-1px -1px;
       min-height:100vh;
     }
-    .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-    .wrap{max-width:920px; margin:0 auto; padding:clamp(48px,9vw,120px) clamp(20px,5vw,40px)}
+    a{color:inherit;text-decoration:none}
+    .shell{max-width:1080px;margin:0 auto;min-height:100vh;
+      border-left:1px solid var(--line);border-right:1px solid var(--line);
+      display:flex;flex-direction:column}
+    .pad{padding:0 clamp(20px,4vw,56px)}
 
-    header{margin-bottom:clamp(48px,8vw,84px)}
-    .eyebrow{font-family:"JetBrains Mono",monospace; font-size:12px; letter-spacing:.28em;
-      text-transform:uppercase; color:var(--brass); margin-bottom:22px}
-    h1{font-family:"Fraunces",serif; font-weight:400; font-size:clamp(44px,9vw,86px);
-      line-height:1.02; letter-spacing:-.015em}
-    h1 em{font-style:italic; color:var(--brass)}
-    .lede{margin-top:22px; max-width:44ch; font-size:clamp(17px,2.4vw,20px); color:var(--sand-dim)}
-    .lede strong{color:var(--sand); font-weight:600}
+    /* ---- top status bar ---- */
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+      height:52px;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.06em}
+    .bar .l,.bar .r{display:flex;align-items:center;gap:16px}
+    .bar .brand{color:var(--fg);font-weight:700;letter-spacing:.12em}
+    .bar .muted{color:var(--faint)}
+    .bar .r .muted{display:none}
+    @media(min-width:640px){.bar .r .muted{display:inline}}
+    .status{display:inline-flex;align-items:center;gap:8px;color:var(--dim)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);
+      box-shadow:0 0 0 0 var(--acc);animation:pulse 2.4s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(182,244,0,.5)}
+      70%{box-shadow:0 0 0 7px rgba(182,244,0,0)}100%{box-shadow:0 0 0 0 rgba(182,244,0,0)}}
 
-    .grid{display:grid; grid-template-columns:1fr; gap:clamp(20px,3vw,28px)}
-    @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+    /* ---- hero ---- */
+    .hero{padding-top:clamp(56px,10vw,110px);padding-bottom:clamp(40px,7vw,72px);
+      border-bottom:1px solid var(--line)}
+    .prompt{color:var(--dim);font-size:13px;letter-spacing:.02em;margin-bottom:26px}
+    .prompt b{color:var(--acc);font-weight:500}
+    .prompt .path{color:var(--fg)}
+    h1{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;
+      font-size:clamp(30px,6.4vw,62px);line-height:1.04;text-transform:uppercase}
+    h1 .t2{display:block;color:var(--faint)}
+    h1 .cur{display:inline-block;width:.56em;height:.92em;margin-left:.12em;
+      background:var(--acc);transform:translateY(.12em);animation:blink 1.15s steps(1) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .sub{margin-top:30px;max-width:60ch;color:var(--dim);font-size:15px}
+    .sub b{color:var(--fg);font-weight:500}
+    .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 26px;
+      font-size:12px;color:var(--faint);letter-spacing:.04em}
+    .meta i{font-style:normal;color:var(--dim)}
 
-    .card{
-      position:relative; display:flex; flex-direction:column;
-      border:1px solid var(--line); border-radius:16px; padding:clamp(24px,3.4vw,34px);
-      background:linear-gradient(180deg, rgba(233,225,211,.035), rgba(233,225,211,.01));
-      transition:border-color .3s ease, transform .3s ease, background .3s ease;
-      overflow:hidden;
-    }
-    .card::before{content:""; position:absolute; inset:0 0 auto 0; height:3px;
-      background:linear-gradient(90deg,var(--brass),transparent 70%); opacity:.7}
-    .card:hover{border-color:rgba(201,149,84,.5); transform:translateY(-3px);
-      background:linear-gradient(180deg, rgba(201,149,84,.06), rgba(233,225,211,.01))}
-    .card-kicker{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.2em;
-      text-transform:uppercase; color:var(--sand-dim); display:flex; gap:10px; align-items:center}
-    .badge{border:1px solid var(--line); border-radius:999px; padding:2px 9px; font-size:10px;
-      color:var(--brass); background:var(--brass-soft)}
-    .card h2{font-family:"Fraunces",serif; font-weight:400; font-size:clamp(26px,3.6vw,34px);
-      line-height:1.1; margin:16px 0 12px}
-    .card p{color:var(--sand-dim); font-size:16px; margin-bottom:18px}
-    .stack{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px}
-    .stack span{font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--sand-dim);
-      border:1px solid var(--line); border-radius:6px; padding:3px 8px}
-    .links{margin-top:auto; display:flex; flex-wrap:wrap; gap:10px}
-    a.btn{font-family:"JetBrains Mono",monospace; font-size:13px; letter-spacing:.02em;
-      text-decoration:none; color:var(--sand); border:1px solid var(--line); border-radius:9px;
-      padding:10px 15px; display:inline-flex; align-items:center; gap:8px;
-      transition:border-color .25s ease, color .25s ease, background .25s ease}
-    a.btn:hover{border-color:var(--brass); color:var(--brass)}
-    a.btn.primary{background:var(--brass); color:#1a130a; border-color:var(--brass); font-weight:500}
-    a.btn.primary:hover{background:#d9a866; color:#1a130a}
-    .arrow{transition:transform .25s ease}
-    a.btn:hover .arrow{transform:translate(2px,-2px)}
+    /* ---- projects table ---- */
+    .sec-head{display:flex;align-items:baseline;justify-content:space-between;
+      padding-top:26px;padding-bottom:14px;font-size:12px;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--faint)}
+    .sec-head .cnt{color:var(--dim)}
+    .rows{border-top:1px solid var(--line)}
+    .row{display:grid;grid-template-columns:44px 1fr;gap:0 18px;
+      padding:clamp(22px,3vw,30px) 0;border-bottom:1px solid var(--line);
+      position:relative;transition:background .25s ease}
+    .row:hover{background:linear-gradient(90deg,var(--acc-dim),transparent 60%)}
+    .row .idx{font-size:12px;color:var(--acc);padding-top:5px;font-weight:500}
+    .row .body{min-width:0}
+    .row .top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px}
+    .row h2{font-family:var(--disp);font-weight:600;font-size:clamp(18px,2.6vw,25px);
+      letter-spacing:-.01em;line-height:1.15}
+    .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--dim);border:1px solid var(--line);border-radius:3px;padding:2px 7px}
+    .tag.live{color:var(--acc);border-color:rgba(182,244,0,.35)}
+    .tag.wip{color:#ffcf5e;border-color:rgba(255,207,94,.3)}
+    .row p{color:var(--dim);font-size:14px;max-width:66ch;margin:12px 0 0}
+    .stack{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+    .stack span{font-size:11px;color:var(--faint);border:1px solid var(--line-2);
+      border-radius:4px;padding:3px 8px;background:var(--bg-2)}
+    .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+    .lnk{font-size:12.5px;letter-spacing:.03em;color:var(--fg);
+      border:1px solid var(--line);border-radius:5px;padding:8px 13px;
+      display:inline-flex;align-items:center;gap:9px;
+      transition:border-color .2s ease,color .2s ease,background .2s ease}
+    .lnk:hover{border-color:var(--acc);color:var(--acc)}
+    .lnk.primary{background:var(--acc);color:#0a0a0a;border-color:var(--acc);font-weight:500}
+    .lnk.primary:hover{background:#c9ff33;color:#0a0a0a}
+    .lnk .ar{transition:transform .2s ease}
+    .lnk:hover .ar{transform:translate(2px,-2px)}
 
-    footer{margin-top:clamp(56px,9vw,96px); padding-top:26px; border-top:1px solid var(--line);
-      display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center}
-    footer a{color:var(--sand-dim); text-decoration:none; border-bottom:1px solid transparent}
-    footer a:hover{color:var(--brass); border-bottom-color:var(--brass)}
-    footer .mono{font-size:12px; color:var(--sand-dim)}
+    /* ---- footer ---- */
+    footer{margin-top:auto;border-top:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;
+      padding-top:20px;padding-bottom:20px;font-size:12px;color:var(--faint);letter-spacing:.04em}
+    footer a{color:var(--dim);transition:color .2s ease}
+    footer a:hover{color:var(--acc)}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <p class="eyebrow">Tomer Assa · Selected work</p>
-      <h1>Things I've<br/><em>built.</em></h1>
-      <p class="lede">A couple of side projects I care about — one <strong>design-led</strong>, one <strong>systems-led</strong>. Code is on GitHub; the travel journal has a live demo.</p>
-    </header>
+  <div class="shell">
 
-    <main class="grid">
-      <!-- Travel journal -->
-      <article class="card">
-        <p class="card-kicker">01 — Frontend / Design</p>
-        <h2>A map-driven travel journal</h2>
-        <p>A cinematic editorial site: a horizontal day strip, a MapLibre map that flies to each stop as you scroll, per-entry modals with a photo gallery, and a chapter marquee that shifts flag and tint by country. No build step, no framework.</p>
-        <div class="stack">
-          <span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>MapLibre GL</span>
-        </div>
-        <div class="links">
-          <a class="btn primary" href="https://tomerassa.github.io/travel-journal-demo/" target="_blank" rel="noopener">Live demo <span class="arrow">↗</span></a>
-          <a class="btn" href="https://github.com/TomerAssa/travel-journal-demo" target="_blank" rel="noopener">Source <span class="arrow">↗</span></a>
-        </div>
-      </article>
+    <div class="bar pad">
+      <div class="l">
+        <span class="brand">TOMER_ASSA</span>
+        <span class="muted">// software</span>
+      </div>
+      <div class="r">
+        <span class="muted">selected-work</span>
+        <span class="status"><span class="dot"></span>AVAILABLE</span>
+      </div>
+    </div>
 
-      <!-- Job finder -->
-      <article class="card">
-        <p class="card-kicker">02 — Backend / Agents <span class="badge">WIP</span></p>
-        <h2>A league of job-hunting agents</h2>
-        <p>A multi-agent pipeline that finds roles in the Israeli startup ecosystem: discovers careers/ATS pages via SERP, extracts open positions, matches them against your network, and tailors a CV per role. Persisted in SQLite; LLM runs locally by default.</p>
-        <div class="stack">
-          <span>TypeScript</span><span>Node</span><span>SQLite</span><span>Redis</span><span>LLM agents</span>
-        </div>
-        <div class="links">
-          <a class="btn primary" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">Source <span class="arrow">↗</span></a>
-        </div>
-      </article>
+    <section class="hero pad">
+      <p class="prompt"><b>$</b> ls <span class="path">~/projects</span> --sort=recent</p>
+      <h1>Things I've<span class="t2">shipped.<span class="cur"></span></span></h1>
+      <p class="sub">Two side projects I care about — one <b>design-led</b>, one <b>systems-led</b>. Everything below is on GitHub; the travel journal runs live in the browser.</p>
+      <div class="meta">
+        <span><i>role</i> &nbsp;product / builder</span>
+        <span><i>stack</i> &nbsp;ts · node · vanilla-web</span>
+        <span><i>host</i> &nbsp;github pages</span>
+      </div>
+    </section>
+
+    <main class="pad">
+      <div class="sec-head">
+        <span>Projects</span>
+        <span class="cnt">02 total</span>
+      </div>
+
+      <div class="rows">
+        <!-- 01 -->
+        <article class="row">
+          <div class="idx">01</div>
+          <div class="body">
+            <div class="top">
+              <h2>map-driven travel journal</h2>
+              <span class="tag">frontend</span>
+              <span class="tag live">● live</span>
+            </div>
+            <p>A cinematic editorial site: a horizontal day strip, a MapLibre map that flies to each stop as you scroll, per-entry modals with a gallery, and a chapter marquee that shifts flag and tint by country. No build step, no framework.</p>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>MapLibre GL</span></div>
+            <div class="links">
+              <a class="lnk primary" href="https://tomerassa.github.io/travel-journal-demo/" target="_blank" rel="noopener">open live demo <span class="ar">↗</span></a>
+              <a class="lnk" href="https://github.com/TomerAssa/travel-journal-demo" target="_blank" rel="noopener">source <span class="ar">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="row">
+          <div class="idx">02</div>
+          <div class="body">
+            <div class="top">
+              <h2>league of job-hunting agents</h2>
+              <span class="tag">backend / agents</span>
+              <span class="tag wip">◐ wip</span>
+            </div>
+            <p>A multi-agent pipeline that finds roles in the Israeli startup ecosystem: discovers careers/ATS pages via SERP, extracts open positions, matches them against your network, and tailors a CV per role. Persisted in SQLite; the LLM runs locally by default.</p>
+            <div class="stack"><span>TypeScript</span><span>Node</span><span>SQLite</span><span>Redis</span><span>LLM agents</span></div>
+            <div class="links">
+              <a class="lnk primary" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">source <span class="ar">↗</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
     </main>
 
-    <footer>
-      <span class="mono">© <span id="yr">2026</span> Tomer Assa</span>
-      <a class="mono" href="https://github.com/TomerAssa" target="_blank" rel="noopener">github.com/TomerAssa ↗</a>
+    <footer class="pad">
+      <span>© <span id="yr">2026</span> tomer assa · built &amp; hosted on github pages</span>
+      <a href="https://github.com/TomerAssa" target="_blank" rel="noopener">github.com/TomerAssa ↗</a>
     </footer>
+
   </div>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
