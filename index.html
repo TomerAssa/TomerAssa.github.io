@@ -3,193 +3,204 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Tomer Assa — Projects</title>
-  <meta name="description" content="Selected projects by Tomer Assa — a map-driven travel journal and a multi-agent job-search tool." />
-  <meta name="theme-color" content="#08090A" />
-  <meta property="og:title" content="Tomer Assa — Projects" />
-  <meta property="og:description" content="A map-driven travel journal and a multi-agent job-search tool." />
+  <title>Tomer Assa — Product Manager & Builder</title>
+  <meta name="description" content="Tomer Assa — a product manager who builds. Two projects: a map-driven travel journal and a multi-agent job-search tool." />
+  <meta name="theme-color" content="#FDFCFA" />
+  <meta property="og:title" content="Tomer Assa — Product Manager & Builder" />
+  <meta property="og:description" content="A PM who builds. A map-driven travel journal and a multi-agent job-search tool." />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Martian+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --bg:#08090A; --bg-2:#0E0F11;
-      --fg:#E6E8E6; --dim:#8A8F8A; --faint:#565A56;
-      --line:rgba(230,232,230,.09); --line-2:rgba(230,232,230,.045);
-      --acc:#B6F400; --acc-dim:rgba(182,244,0,.14);
-      --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-      --disp:"Martian Mono",var(--mono);
+      --paper:#FDFCFA; --ink:#17171A; --ink-soft:#55555E; --ink-faint:#8A8A93;
+      --line:#EBE8E1;
+      --cobalt:#3350F0; --cobalt-bg:#EDF0FF; --cobalt-ink:#20308f;
+      --coral:#FF5A3C; --coral-bg:#FFF0EC; --coral-ink:#9c2e1a;
+      --emerald:#0FB981; --emerald-bg:#E7FBF3;
+      --amber:#FFB020;
+      --disp:"Bricolage Grotesque",system-ui,sans-serif;
+      --body:"Plus Jakarta Sans",system-ui,sans-serif;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{-webkit-text-size-adjust:100%}
-    ::selection{background:var(--acc);color:#0a0a0a}
+    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+    ::selection{background:var(--cobalt);color:#fff}
     body{
-      background:var(--bg); color:var(--fg); font-family:var(--mono);
-      font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
-      /* faint engineering grid */
-      background-image:
-        linear-gradient(var(--line-2) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
-      background-size:48px 48px; background-position:-1px -1px;
-      min-height:100vh;
+      background:var(--paper); color:var(--ink); font-family:var(--body);
+      font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+      overflow-x:hidden; position:relative; min-height:100vh;
     }
-    a{color:inherit;text-decoration:none}
-    .shell{max-width:1080px;margin:0 auto;min-height:100vh;
-      border-left:1px solid var(--line);border-right:1px solid var(--line);
-      display:flex;flex-direction:column}
-    .pad{padding:0 clamp(20px,4vw,56px)}
+    /* soft energetic color-blobs behind everything */
+    .atmos{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+    .blob.a{width:520px;height:520px;background:#c9d3ff;top:-160px;right:-120px;animation:float1 18s ease-in-out infinite}
+    .blob.b{width:440px;height:440px;background:#ffdcd2;bottom:-160px;left:-120px;animation:float2 22s ease-in-out infinite}
+    .blob.c{width:360px;height:360px;background:#cdf7e6;top:38%;left:52%;opacity:.35;animation:float1 26s ease-in-out infinite}
+    @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-26px,34px)}}
+    @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-28px)}}
 
-    /* ---- top status bar ---- */
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;
-      height:52px;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.06em}
-    .bar .l,.bar .r{display:flex;align-items:center;gap:16px}
-    .bar .brand{color:var(--fg);font-weight:700;letter-spacing:.12em}
-    .bar .muted{color:var(--faint)}
-    .bar .r .muted{display:none}
-    @media(min-width:640px){.bar .r .muted{display:inline}}
-    .status{display:inline-flex;align-items:center;gap:8px;color:var(--dim)}
-    .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);
-      box-shadow:0 0 0 0 var(--acc);animation:pulse 2.4s infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(182,244,0,.5)}
-      70%{box-shadow:0 0 0 7px rgba(182,244,0,0)}100%{box-shadow:0 0 0 0 rgba(182,244,0,0)}}
+    .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
 
-    /* ---- hero ---- */
-    .hero{padding-top:clamp(56px,10vw,110px);padding-bottom:clamp(40px,7vw,72px);
-      border-bottom:1px solid var(--line)}
-    .prompt{color:var(--dim);font-size:13px;letter-spacing:.02em;margin-bottom:26px}
-    .prompt b{color:var(--acc);font-weight:500}
-    .prompt .path{color:var(--fg)}
-    h1{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;
-      font-size:clamp(30px,6.4vw,62px);line-height:1.04;text-transform:uppercase}
-    h1 .t2{display:block;color:var(--faint)}
-    h1 .cur{display:inline-block;width:.56em;height:.92em;margin-left:.12em;
-      background:var(--acc);transform:translateY(.12em);animation:blink 1.15s steps(1) infinite}
-    @keyframes blink{50%{opacity:0}}
-    .sub{margin-top:30px;max-width:60ch;color:var(--dim);font-size:15px}
-    .sub b{color:var(--fg);font-weight:500}
-    .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 26px;
-      font-size:12px;color:var(--faint);letter-spacing:.04em}
-    .meta i{font-style:normal;color:var(--dim)}
+    /* ---------- nav ---------- */
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding-top:26px;padding-bottom:26px}
+    .logo{font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:-.02em}
+    .logo .dot{color:var(--cobalt)}
+    .nav-r{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:500;color:var(--ink-soft)}
+    .nav-r .role{display:none}
+    @media(min-width:620px){.nav-r .role{display:inline}}
+    .avail{display:inline-flex;align-items:center;gap:8px;background:var(--emerald-bg);
+      color:#087a56;padding:6px 13px;border-radius:999px;font-weight:600;font-size:13px}
+    .avail .d{width:8px;height:8px;border-radius:50%;background:var(--emerald)}
 
-    /* ---- projects table ---- */
-    .sec-head{display:flex;align-items:baseline;justify-content:space-between;
-      padding-top:26px;padding-bottom:14px;font-size:12px;letter-spacing:.16em;
-      text-transform:uppercase;color:var(--faint)}
-    .sec-head .cnt{color:var(--dim)}
-    .rows{border-top:1px solid var(--line)}
-    .row{display:grid;grid-template-columns:44px 1fr;gap:0 18px;
-      padding:clamp(22px,3vw,30px) 0;border-bottom:1px solid var(--line);
-      position:relative;transition:background .25s ease}
-    .row:hover{background:linear-gradient(90deg,var(--acc-dim),transparent 60%)}
-    .row .idx{font-size:12px;color:var(--acc);padding-top:5px;font-weight:500}
-    .row .body{min-width:0}
-    .row .top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px}
-    .row h2{font-family:var(--disp);font-weight:600;font-size:clamp(18px,2.6vw,25px);
-      letter-spacing:-.01em;line-height:1.15}
-    .tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-      color:var(--dim);border:1px solid var(--line);border-radius:3px;padding:2px 7px}
-    .tag.live{color:var(--acc);border-color:rgba(182,244,0,.35)}
-    .tag.wip{color:#ffcf5e;border-color:rgba(255,207,94,.3)}
-    .row p{color:var(--dim);font-size:14px;max-width:66ch;margin:12px 0 0}
-    .stack{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
-    .stack span{font-size:11px;color:var(--faint);border:1px solid var(--line-2);
-      border-radius:4px;padding:3px 8px;background:var(--bg-2)}
-    .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-    .lnk{font-size:12.5px;letter-spacing:.03em;color:var(--fg);
-      border:1px solid var(--line);border-radius:5px;padding:8px 13px;
-      display:inline-flex;align-items:center;gap:9px;
-      transition:border-color .2s ease,color .2s ease,background .2s ease}
-    .lnk:hover{border-color:var(--acc);color:var(--acc)}
-    .lnk.primary{background:var(--acc);color:#0a0a0a;border-color:var(--acc);font-weight:500}
-    .lnk.primary:hover{background:#c9ff33;color:#0a0a0a}
-    .lnk .ar{transition:transform .2s ease}
-    .lnk:hover .ar{transform:translate(2px,-2px)}
+    /* ---------- hero ---------- */
+    .hero{padding-top:clamp(40px,8vw,86px);padding-bottom:clamp(44px,7vw,80px)}
+    .eyebrow{font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--cobalt);
+      display:inline-flex;align-items:center;gap:9px;margin-bottom:24px}
+    .eyebrow .wave{display:inline-block;animation:wave 2.6s ease-in-out infinite;transform-origin:70% 70%}
+    @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(16deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+    h1{font-family:var(--disp);font-weight:700;font-size:clamp(38px,7.6vw,76px);
+      line-height:1.02;letter-spacing:-.03em;max-width:15ch}
+    .mark{position:relative;white-space:nowrap;color:var(--ink)}
+    .mark::before{content:"";position:absolute;left:-.06em;right:-.06em;bottom:.06em;
+      height:.42em;background:linear-gradient(90deg,#ffd84d,#ffb020);z-index:-1;border-radius:3px;
+      transform:rotate(-1.2deg) scaleX(0);transform-origin:left;animation:draw .7s .5s cubic-bezier(.2,.8,.3,1) forwards}
+    @keyframes draw{to{transform:rotate(-1.2deg) scaleX(1)}}
+    .lede{margin-top:30px;max-width:56ch;font-size:clamp(17px,2.3vw,20px);color:var(--ink-soft)}
+    .lede b{color:var(--ink);font-weight:600}
+    .chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px}
+    .chip{font-size:13.5px;font-weight:600;color:var(--ink-soft);background:#fff;
+      border:1px solid var(--line);border-radius:999px;padding:8px 15px}
+    .chip b{color:var(--cobalt)}
 
-    /* ---- footer ---- */
-    footer{margin-top:auto;border-top:1px solid var(--line);
-      display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;
-      padding-top:20px;padding-bottom:20px;font-size:12px;color:var(--faint);letter-spacing:.04em}
-    footer a{color:var(--dim);transition:color .2s ease}
-    footer a:hover{color:var(--acc)}
+    /* ---------- projects ---------- */
+    .sec-label{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--ink-faint);
+      display:flex;align-items:center;gap:14px;margin-bottom:26px}
+    .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+    .cards{display:grid;grid-template-columns:1fr;gap:22px}
+    @media(min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+
+    .card{position:relative;border-radius:22px;padding:clamp(26px,3.4vw,36px);
+      display:flex;flex-direction:column;border:1px solid rgba(0,0,0,.06);
+      transition:transform .3s cubic-bezier(.2,.8,.3,1),box-shadow .3s ease;
+      overflow:hidden}
+    .card.c1{background:var(--cobalt-bg)}
+    .card.c2{background:var(--coral-bg)}
+    .card:hover{transform:translateY(-6px)}
+    .card.c1:hover{box-shadow:0 22px 44px -20px rgba(51,80,240,.5)}
+    .card.c2:hover{box-shadow:0 22px 44px -20px rgba(255,90,60,.45)}
+    .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .num{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1;letter-spacing:-.03em}
+    .c1 .num{color:var(--cobalt)} .c2 .num{color:var(--coral)}
+    .pill{font-size:12px;font-weight:700;letter-spacing:.03em;padding:6px 12px;border-radius:999px;
+      display:inline-flex;align-items:center;gap:7px}
+    .pill.live{background:var(--emerald);color:#fff}
+    .pill.live .d{width:7px;height:7px;border-radius:50%;background:#fff;animation:blip 1.6s ease-in-out infinite}
+    @keyframes blip{0%,100%{opacity:1}50%{opacity:.4}}
+    .pill.wip{background:#fff;color:var(--coral-ink);border:1px solid rgba(156,46,26,.2)}
+    .card h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.8vw,27px);
+      line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+    .card p{color:var(--ink-soft);font-size:15px;line-height:1.58}
+    .kind{font-size:12.5px;font-weight:600;letter-spacing:.02em;margin-bottom:14px}
+    .c1 .kind{color:var(--cobalt-ink)} .c2 .kind{color:var(--coral-ink)}
+    .stack{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+    .stack span{font-size:12px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.7);
+      border-radius:7px;padding:5px 10px}
+    .links{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+    .btn{font-size:14px;font-weight:600;padding:11px 17px;border-radius:11px;
+      display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .btn .ar{transition:transform .2s ease}
+    .btn:hover .ar{transform:translate(2px,-2px)}
+    .btn.solid{color:#fff}
+    .c1 .btn.solid{background:var(--cobalt)} .c1 .btn.solid:hover{background:#2740d8}
+    .c2 .btn.solid{background:var(--coral)} .c2 .btn.solid:hover{background:#eb4629}
+    .btn.solid:hover{transform:translateY(-1px)}
+    .btn.ghost{background:rgba(255,255,255,.8);color:var(--ink);border:1px solid rgba(0,0,0,.08)}
+    .btn.ghost:hover{border-color:rgba(0,0,0,.2)}
+
+    /* ---------- footer ---------- */
+    footer{margin-top:clamp(56px,9vw,96px);border-top:1px solid var(--line);
+      padding:26px 0 44px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+      font-size:14px;color:var(--ink-faint)}
+    footer a{color:var(--ink-soft);font-weight:600;transition:color .2s ease}
+    footer a:hover{color:var(--cobalt)}
+
+    /* ---------- entrance ---------- */
+    .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.8,.3,1) forwards}
+    .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
+    .d4{animation-delay:.34s}.d5{animation-delay:.44s}.d6{animation-delay:.54s}
+    @keyframes rise{to{opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){
+      .reveal,.mark::before,.blob,.wave,.pill.live .d{animation:none!important;opacity:1!important;transform:none!important}
+      .mark::before{transform:rotate(-1.2deg)}
+    }
   </style>
 </head>
 <body>
-  <div class="shell">
+  <div class="atmos"><span class="blob a"></span><span class="blob b"></span><span class="blob c"></span></div>
 
-    <div class="bar pad">
-      <div class="l">
-        <span class="brand">TOMER_ASSA</span>
-        <span class="muted">// software</span>
+  <div class="wrap">
+    <nav class="reveal d1">
+      <span class="logo">Tomer Assa<span class="dot">.</span></span>
+      <div class="nav-r">
+        <span class="role">Product Manager &amp; Builder</span>
+        <span class="avail"><span class="d"></span>Open to work</span>
       </div>
-      <div class="r">
-        <span class="muted">selected-work</span>
-        <span class="status"><span class="dot"></span>AVAILABLE</span>
-      </div>
-    </div>
+    </nav>
 
-    <section class="hero pad">
-      <p class="prompt"><b>$</b> ls <span class="path">~/projects</span> --sort=recent</p>
-      <h1>Things I've<span class="t2">shipped.<span class="cur"></span></span></h1>
-      <p class="sub">Two side projects I care about — one <b>design-led</b>, one <b>systems-led</b>. Everything below is on GitHub; the travel journal runs live in the browser.</p>
-      <div class="meta">
-        <span><i>role</i> &nbsp;product / builder</span>
-        <span><i>stack</i> &nbsp;ts · node · vanilla-web</span>
-        <span><i>host</i> &nbsp;github pages</span>
+    <header class="hero">
+      <p class="eyebrow reveal d2"><span class="wave">👋</span> Hi, I'm Tomer</p>
+      <h1 class="reveal d2">A product manager who&nbsp;<span class="mark">builds</span>.</h1>
+      <p class="lede reveal d3">I turn fuzzy problems into products people actually use — talking to users, sketching the flow, and <b>shipping the thing</b>. I love working with people and moving fast. Here are two I built end to end:</p>
+      <div class="chips reveal d4">
+        <span class="chip"><b>0→1</b>&nbsp; products</span>
+        <span class="chip"><b>user</b>-obsessed</span>
+        <span class="chip">hands-on &amp; <b>fast</b></span>
       </div>
-    </section>
+    </header>
 
-    <main class="pad">
-      <div class="sec-head">
-        <span>Projects</span>
-        <span class="cnt">02 total</span>
-      </div>
-
-      <div class="rows">
-        <!-- 01 -->
-        <article class="row">
-          <div class="idx">01</div>
-          <div class="body">
-            <div class="top">
-              <h2>map-driven travel journal</h2>
-              <span class="tag">frontend</span>
-              <span class="tag live">● live</span>
-            </div>
-            <p>A cinematic editorial site: a horizontal day strip, a MapLibre map that flies to each stop as you scroll, per-entry modals with a gallery, and a chapter marquee that shifts flag and tint by country. No build step, no framework.</p>
-            <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>MapLibre GL</span></div>
-            <div class="links">
-              <a class="lnk primary" href="https://tomerassa.github.io/travel-journal-demo/" target="_blank" rel="noopener">open live demo <span class="ar">↗</span></a>
-              <a class="lnk" href="https://github.com/TomerAssa/travel-journal-demo" target="_blank" rel="noopener">source <span class="ar">↗</span></a>
-            </div>
+    <main>
+      <p class="sec-label reveal d4">What I've built</p>
+      <div class="cards">
+        <article class="card c1 reveal d5">
+          <div class="card-top">
+            <span class="num">01</span>
+            <span class="pill live"><span class="d"></span>LIVE</span>
+          </div>
+          <p class="kind">Frontend · design-led</p>
+          <h2>A map-driven travel journal</h2>
+          <p>A cinematic site where a horizontal day-strip drives a map that flies to each stop as you scroll — with per-entry stories and a chapter marquee that shifts by country. Designed and built from scratch, no framework.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>Vanilla JS</span><span>MapLibre GL</span></div>
+          <div class="links">
+            <a class="btn solid" href="https://tomerassa.github.io/travel-journal-demo/" target="_blank" rel="noopener">Open live demo <span class="ar">↗</span></a>
+            <a class="btn ghost" href="https://github.com/TomerAssa/travel-journal-demo" target="_blank" rel="noopener">Code <span class="ar">↗</span></a>
           </div>
         </article>
 
-        <!-- 02 -->
-        <article class="row">
-          <div class="idx">02</div>
-          <div class="body">
-            <div class="top">
-              <h2>league of job-hunting agents</h2>
-              <span class="tag">backend / agents</span>
-              <span class="tag wip">◐ wip</span>
-            </div>
-            <p>A multi-agent pipeline that finds roles in the Israeli startup ecosystem: discovers careers/ATS pages via SERP, extracts open positions, matches them against your network, and tailors a CV per role. Persisted in SQLite; the LLM runs locally by default.</p>
-            <div class="stack"><span>TypeScript</span><span>Node</span><span>SQLite</span><span>Redis</span><span>LLM agents</span></div>
-            <div class="links">
-              <a class="lnk primary" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">source <span class="ar">↗</span></a>
-            </div>
+        <article class="card c2 reveal d6">
+          <div class="card-top">
+            <span class="num">02</span>
+            <span class="pill wip">◐ In progress</span>
+          </div>
+          <p class="kind">Backend · systems-led</p>
+          <h2>A league of job-hunting agents</h2>
+          <p>A team of AI agents that finds roles across the startup ecosystem: it discovers careers pages, pulls open positions, matches them to your network for warm intros, and tailors a CV per role. All local-first.</p>
+          <div class="stack"><span>TypeScript</span><span>Node</span><span>SQLite</span><span>Redis</span><span>LLM agents</span></div>
+          <div class="links">
+            <a class="btn solid" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">See the code <span class="ar">↗</span></a>
           </div>
         </article>
       </div>
     </main>
 
-    <footer class="pad">
-      <span>© <span id="yr">2026</span> tomer assa · built &amp; hosted on github pages</span>
+    <footer>
+      <span>© <span id="yr">2026</span> Tomer Assa — built &amp; hosted on GitHub Pages</span>
       <a href="https://github.com/TomerAssa" target="_blank" rel="noopener">github.com/TomerAssa ↗</a>
     </footer>
-
   </div>
   <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
