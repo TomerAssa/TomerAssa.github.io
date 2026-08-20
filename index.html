@@ -102,6 +102,7 @@
     .pill.live .d{width:7px;height:7px;border-radius:50%;background:#fff;animation:blip 1.6s ease-in-out infinite}
     @keyframes blip{0%,100%{opacity:1}50%{opacity:.4}}
     .pill.wip{background:#fff;color:var(--coral-ink);border:1px solid rgba(156,46,26,.2)}
+    .pill.ready{background:var(--coral);color:#fff}
     .card h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,2.8vw,27px);
       line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
     .card p{color:var(--ink-soft);font-size:15px;line-height:1.58}
@@ -184,11 +185,11 @@
         <article class="card c2 reveal d6">
           <div class="card-top">
             <span class="num">02</span>
-            <span class="pill wip">◐ In progress</span>
+            <span class="pill ready">✓ Ready</span>
           </div>
           <p class="kind">Backend · systems-led</p>
           <h2>A league of job-hunting agents</h2>
-          <p>A team of AI agents that finds roles across the startup ecosystem: it discovers careers pages, pulls open positions, matches them to your network for warm intros, and tailors a CV per role. All local-first.</p>
+          <p>A local-first tool that surfaces roles that aren't advertised to you: it crawls companies' careers pages, then models your network as a graph of introductions — so you can see exactly which openings you already have a path into.</p>
           <div class="stack"><span>TypeScript</span><span>Node</span><span>SQLite</span><span>Redis</span><span>LLM agents</span></div>
           <div class="links">
             <a class="btn solid" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">See the code <span class="ar">↗</span></a>
