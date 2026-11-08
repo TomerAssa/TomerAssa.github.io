@@ -20,6 +20,7 @@
       --line:#EBE8E1;
       --cobalt:#3350F0; --cobalt-bg:#EDF0FF; --cobalt-ink:#20308f;
       --coral:#FF5A3C; --coral-bg:#FFF0EC; --coral-ink:#9c2e1a;
+      --plum:#B02E6E; --plum-bg:#FCEFF5; --plum-ink:#6e1a44;
       --emerald:#0FB981; --emerald-bg:#E7FBF3;
       --amber:#FFB020;
       --disp:"Bricolage Grotesque",system-ui,sans-serif;
@@ -90,12 +91,14 @@
       overflow:hidden}
     .card.c1{background:var(--cobalt-bg)}
     .card.c2{background:var(--coral-bg)}
+    .card.c3{background:var(--plum-bg)}
     .card:hover{transform:translateY(-6px)}
     .card.c1:hover{box-shadow:0 22px 44px -20px rgba(51,80,240,.5)}
     .card.c2:hover{box-shadow:0 22px 44px -20px rgba(255,90,60,.45)}
+    .card.c3:hover{box-shadow:0 22px 44px -20px rgba(176,46,110,.4)}
     .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
     .num{font-family:var(--disp);font-weight:800;font-size:40px;line-height:1;letter-spacing:-.03em}
-    .c1 .num{color:var(--cobalt)} .c2 .num{color:var(--coral)}
+    .c1 .num{color:var(--cobalt)} .c2 .num{color:var(--coral)} .c3 .num{color:var(--plum)}
     .pill{font-size:12px;font-weight:700;letter-spacing:.03em;padding:6px 12px;border-radius:999px;
       display:inline-flex;align-items:center;gap:7px}
     .pill.live{background:var(--emerald);color:#fff}
@@ -107,7 +110,7 @@
       line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
     .card p{color:var(--ink-soft);font-size:15px;line-height:1.58}
     .kind{font-size:12.5px;font-weight:600;letter-spacing:.02em;margin-bottom:14px}
-    .c1 .kind{color:var(--cobalt-ink)} .c2 .kind{color:var(--coral-ink)}
+    .c1 .kind{color:var(--cobalt-ink)} .c2 .kind{color:var(--coral-ink)} .c3 .kind{color:var(--plum-ink)}
     .stack{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
     .stack span{font-size:12px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.7);
       border-radius:7px;padding:5px 10px}
@@ -119,6 +122,7 @@
     .btn.solid{color:#fff}
     .c1 .btn.solid{background:var(--cobalt)} .c1 .btn.solid:hover{background:#2740d8}
     .c2 .btn.solid{background:var(--coral)} .c2 .btn.solid:hover{background:#eb4629}
+    .c3 .btn.solid{background:var(--plum)} .c3 .btn.solid:hover{background:#951f5a}
     .btn.solid:hover{transform:translateY(-1px)}
     .btn.ghost{background:rgba(255,255,255,.8);color:var(--ink);border:1px solid rgba(0,0,0,.08)}
     .btn.ghost:hover{border-color:rgba(0,0,0,.2)}
@@ -133,7 +137,7 @@
     /* ---------- entrance ---------- */
     .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.8,.3,1) forwards}
     .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
-    .d4{animation-delay:.34s}.d5{animation-delay:.44s}.d6{animation-delay:.54s}
+    .d4{animation-delay:.34s}.d5{animation-delay:.44s}.d6{animation-delay:.54s}.d7{animation-delay:.64s}
     @keyframes rise{to{opacity:1;transform:none}}
     @media(prefers-reduced-motion:reduce){
       .reveal,.mark::before,.blob,.wave,.pill.live .d{animation:none!important;opacity:1!important;transform:none!important}
@@ -194,6 +198,20 @@
           <div class="links">
             <a class="btn solid" href="https://tomer-job-finder.vercel.app/people" target="_blank" rel="noopener">Open live demo <span class="ar">↗</span></a>
             <a class="btn ghost" href="https://github.com/TomerAssa/job-finder" target="_blank" rel="noopener">Code <span class="ar">↗</span></a>
+          </div>
+        </article>
+        <article class="card c3 reveal d7">
+          <div class="card-top">
+            <span class="num">03</span>
+            <span class="pill live"><span class="d"></span>LIVE</span>
+          </div>
+          <p class="kind">Full-stack · AI-assisted</p>
+          <h2>Japan Trip Planner</h2>
+          <p>Built for a real 20-day trip: 174 places from a handwritten notebook, Instagram reels and a Google Maps list, laid out on one map and a day-by-day timeline. It warns about opening-hours conflicts and tracks when tickets go on sale, quoting the source for each. Every AI-extracted booking stays a draft until a person confirms it.</p>
+          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>MapLibre</span><span>Postgres</span><span>Gemini</span></div>
+          <div class="links">
+            <a class="btn solid" href="https://japan-trip-planner-demo.vercel.app" target="_blank" rel="noopener">Open live demo <span class="ar">↗</span></a>
+            <a class="btn ghost" href="https://github.com/TomerAssa/japan-trip-planner-demo" target="_blank" rel="noopener">Code <span class="ar">↗</span></a>
           </div>
         </article>
       </div>
